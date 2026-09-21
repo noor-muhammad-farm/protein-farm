@@ -1,6 +1,7 @@
 import { useState, ReactNode } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { FarmLogo } from '../../components/common/FarmLogo';
 import {
   LayoutDashboard,
   Boxes,
@@ -13,7 +14,6 @@ import {
   Globe,
   Menu,
   X,
-  Egg,
   AlertTriangle,
 } from 'lucide-react';
 
@@ -98,6 +98,7 @@ export function AdminLayout({
           >
             {mobileSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
+          <FarmLogo size="xs" showRing={false} />
           <span className="font-bold text-sm tracking-tight">Admin Portal</span>
         </div>
         <div className="flex items-center gap-2">
@@ -126,9 +127,7 @@ export function AdminLayout({
         {/* Farm Branding */}
         <div>
           <div className="p-6 border-b border-emerald-900 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-400 text-emerald-950 flex items-center justify-center font-black shadow-md">
-              <Egg className="w-6 h-6 fill-emerald-950 stroke-emerald-950" />
-            </div>
+            <FarmLogo size="md" showRing={true} className="ring-amber-400 shrink-0" />
             <div className="min-w-0">
               <h2 className="font-extrabold text-sm text-white truncate">
                 Noor Muhammad Farm

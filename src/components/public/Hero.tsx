@@ -1,6 +1,7 @@
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
-import { Egg, ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import { FarmLogo } from '../common/FarmLogo';
+import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onOpenAuthModal: (mode: 'signin' | 'signup') => void;
@@ -95,17 +96,15 @@ export function Hero({ onOpenAuthModal, onNavigateToStock, onNavigateToContact }
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/15 shadow-2xl text-emerald-50">
               <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-400 text-emerald-950 flex items-center justify-center font-black shadow-lg">
-                    <Egg className="w-7 h-7 fill-emerald-950" />
-                  </div>
+                <div className="flex items-center gap-3.5">
+                  <FarmLogo size="lg" className="ring-2 ring-amber-400 shadow-xl" />
                   <div>
-                    <h3 className="font-bold text-lg text-white">Daily Production</h3>
-                    <p className="text-xs text-amber-300 font-medium">Fresh Commercial Eggs</p>
+                    <h3 className="font-bold text-lg text-white">Noor Muhammad Farm</h3>
+                    <p className="text-xs text-amber-300 font-medium">Layer Poultry & Table Eggs</p>
                   </div>
                 </div>
                 <span className="px-2.5 py-1 text-xs font-bold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                  Active
+                  Verified
                 </span>
               </div>
 

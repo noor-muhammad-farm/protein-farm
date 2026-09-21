@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { FarmLogo } from './FarmLogo';
 import {
-  Egg,
   Globe,
   Menu,
   X,
@@ -40,18 +40,16 @@ export function Navbar({ activeView, setActiveView, onOpenAuthModal }: NavbarPro
           <div
             id="nav-logo-link"
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 text-amber-300 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-              <Egg className="w-7 h-7 fill-amber-300 stroke-emerald-950" />
-            </div>
+            <FarmLogo size="md" className="group-hover:scale-105 transition-transform duration-200" />
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-extrabold text-lg sm:text-xl text-emerald-950 tracking-tight leading-tight">
                   {t('farmName')}
                 </span>
               </div>
-              <p className="text-xs font-medium text-emerald-700 hidden sm:block">
+              <p className="text-xs font-semibold text-emerald-700 hidden sm:block">
                 {t('farmTagline')}
               </p>
             </div>
@@ -205,6 +203,14 @@ export function Navbar({ activeView, setActiveView, onOpenAuthModal }: NavbarPro
           id="mobile-menu-drawer"
           className="md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2 animate-in slide-in-from-top-2"
         >
+          <div className="flex items-center gap-3 px-2 py-2 mb-2 border-b border-slate-100">
+            <FarmLogo size="sm" />
+            <div className="min-w-0">
+              <p className="text-sm font-extrabold text-emerald-950 truncate">{t('farmName')}</p>
+              <p className="text-[11px] font-medium text-emerald-700 truncate">{t('farmTagline')}</p>
+            </div>
+          </div>
+
           <button
             id="mobile-nav-home"
             onClick={() => handleNavClick('home')}

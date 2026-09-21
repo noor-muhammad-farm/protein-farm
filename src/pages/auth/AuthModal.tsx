@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useToast } from '../../context/ToastContext';
+import { FarmLogo } from '../../components/common/FarmLogo';
 import { X, Lock, Mail, User, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface AuthModalProps {
@@ -87,13 +88,16 @@ export function AuthModal({ isOpen, onClose, initialMode = 'signin' }: AuthModal
         className="bg-white rounded-3xl max-w-md w-full p-7 sm:p-8 shadow-2xl border border-slate-200 animate-in zoom-in-95 duration-200"
       >
         <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-          <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-              Noor Muhammad Protein Farm
-            </span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-2">
-              {mode === 'signin' ? t('signInTitle') : t('signUpTitle')}
-            </h2>
+          <div className="flex items-center gap-3">
+            <FarmLogo size="md" />
+            <div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                Noor Muhammad Farm
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+                {mode === 'signin' ? t('signInTitle') : t('signUpTitle')}
+              </h2>
+            </div>
           </div>
           <button
             id="auth-modal-close-button"

@@ -71,6 +71,7 @@ export interface ContactSettings {
   farmAddressUrdu?: string;
   farmEmail: string;
   mapEmbedUrl: string;
+  mapsDirectUrl?: string;
   updatedAt?: string;
 }
 

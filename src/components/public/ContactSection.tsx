@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { subscribeToContactSettings, DEFAULT_CONTACT_SETTINGS } from '../../services/contactService';
+import {
+  subscribeToContactSettings,
+  DEFAULT_CONTACT_SETTINGS,
+  NOOR_MUHAMMAD_MAPS_DIRECT_URL,
+  getEmbedUrlFromMapsUrl,
+} from '../../services/contactService';
 import { ContactSettings } from '../../types';
 import {
   Phone,
@@ -113,19 +118,21 @@ export function ContactSection() {
           {/* 2. Manager Card */}
           <div
             id="contact-manager-card"
-            className="bg-white text-slate-800 rounded-3xl p-8 shadow-xl border border-slate-200 flex flex-col justify-between relative overflow-hidden"
+            className="bg-gradient-to-br from-emerald-900 to-emerald-950 text-white rounded-3xl p-8 shadow-xl border border-emerald-800 flex flex-col justify-between relative overflow-hidden"
           >
+            <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
+
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div className="flex items-center justify-between pb-4 border-b border-emerald-800/80">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md">
                     <User className="w-6 h-6" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold tracking-wider text-emerald-700">
+                    <span className="text-xs uppercase font-bold tracking-wider text-amber-300">
                       {t('managerCardTitle')}
                     </span>
-                    <h3 className="text-2xl font-bold text-slate-900 mt-0.5">
+                    <h3 className="text-2xl font-bold text-white mt-0.5">
                       {contact.managerName}
                     </h3>
                   </div>
@@ -133,12 +140,12 @@ export function ContactSection() {
               </div>
 
               <div className="my-6 space-y-3">
-                <div className="flex items-center gap-3 text-slate-700 text-sm">
-                  <Phone className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div className="flex items-center gap-3 text-emerald-100 text-sm">
+                  <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                   <span className="font-medium tracking-wide">{contact.managerPhone}</span>
                 </div>
-                <div className="flex items-center gap-3 text-slate-500 text-xs">
-                  <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
+                <div className="flex items-center gap-3 text-emerald-200/80 text-xs">
+                  <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
                   <span>Daily deliveries, dispatch scheduling, and vehicle pickup inquiries</span>
                 </div>
               </div>
@@ -149,9 +156,9 @@ export function ContactSection() {
               <a
                 id="manager-call-link"
                 href={`tel:${contact.managerPhone.replace(/\s+/g, '')}`}
-                className="flex items-center justify-center gap-2 py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold rounded-xl transition-colors"
+                className="flex items-center justify-center gap-2 py-3 px-4 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl border border-white/20 transition-colors"
               >
-                <Phone className="w-4 h-4 text-slate-600" />
+                <Phone className="w-4 h-4" />
                 <span>{t('callNow')}</span>
               </a>
               <a
@@ -202,26 +209,41 @@ export function ContactSection() {
           </div>
 
           {/* Embedded Google Map */}
-          <div className="lg:col-span-7 h-64 sm:h-72 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-200 relative">
-            {contact.mapEmbedUrl ? (
+          <div className="lg:col-span-7 flex flex-col h-72 sm:h-80 w-full rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-100 relative group">
+            {/* Top Bar with Place Name & Direct Google Maps Navigation Link */}
+            <div className="bg-slate-900 text-white px-4 py-2.5 flex items-center justify-between gap-2 z-10">
+              <div className="flex items-center gap-2 truncate">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <span className="text-xs font-bold truncate">
+                  {language === 'ur' ? 'نور محمد پروٹین فارم (لائیو لوکیشن)' : 'Noor Muhammad Protein Farm (Live Location)'}
+                </span>
+              </div>
+              <a
+                href={contact.mapsDirectUrl || NOOR_MUHAMMAD_MAPS_DIRECT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-[11px] font-bold transition-colors shrink-0 shadow-xs"
+                title="Open in Google Maps App"
+              >
+                <span>{language === 'ur' ? 'گوگل میپس پر کھولیں' : 'Open in Maps'}</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            </div>
+
+            {/* Iframe */}
+            <div className="flex-1 w-full h-full relative">
               <iframe
-                title="Noor Muhammad Protein Farm Location"
-                src={contact.mapEmbedUrl}
+                title="Noor Muhammad Protein Farm Google Maps"
+                src={getEmbedUrlFromMapsUrl(contact.mapEmbedUrl)}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
-                allowFullScreen={false}
+                allowFullScreen={true}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="w-full h-full"
               ></iframe>
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-slate-500 bg-slate-100">
-                <MapPin className="w-8 h-8 text-emerald-600 mb-2" />
-                <p className="text-sm font-semibold">{t('farmName')}</p>
-                <p className="text-xs text-slate-400 mt-1">{contact.farmAddress}</p>
-              </div>
-            )}
+            </div>
           </div>
 
         </div>
