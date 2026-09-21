@@ -1,0 +1,6 @@
+{
+  "name": "Noor Muhammad Protein Farm",
+  "description": "Layer poultry farm portal and public catalog featuring live stock availability, customer contact, and full admin sales management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

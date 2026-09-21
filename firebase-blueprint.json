@@ -1,0 +1,116 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role assignment",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Auth UID" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "User full name" },
+        "role": { "type": "string", "enum": ["admin", "customer"], "description": "User role in the system" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" },
+        "updatedAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "StockItem": {
+      "title": "StockItem",
+      "description": "Poultry farm inventory item (Eggs, Layer Birds, Feed, Manure)",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Item name" },
+        "nameUrdu": { "type": "string", "description": "Item name in Urdu" },
+        "category": { "type": "string", "description": "Category (Eggs, Birds, Feed, Fertilizer, Other)" },
+        "quantity": { "type": "number", "description": "Available stock quantity" },
+        "unit": { "type": "string", "description": "Unit of measurement (crates, birds, kg, bags)" },
+        "pricePerUnit": { "type": "number", "description": "Sale price per unit" },
+        "costPricePerUnit": { "type": "number", "description": "Production or purchase cost per unit" },
+        "lowStockThreshold": { "type": "number", "description": "Threshold alerting low stock" },
+        "notes": { "type": "string", "description": "Optional notes or details" },
+        "lastUpdated": { "type": "string", "description": "Timestamp of last update" }
+      },
+      "required": ["name", "quantity", "unit", "pricePerUnit"]
+    },
+    "StockHistory": {
+      "title": "StockHistory",
+      "description": "Audit log entry for stock additions or reductions",
+      "type": "object",
+      "properties": {
+        "itemId": { "type": "string", "description": "Reference to stock_items doc" },
+        "itemName": { "type": "string", "description": "Name of the item" },
+        "changeType": { "type": "string", "enum": ["add", "sale", "adjustment", "initial"], "description": "Type of stock change" },
+        "quantity": { "type": "number", "description": "Quantity changed" },
+        "previousQuantity": { "type": "number", "description": "Stock before change" },
+        "newQuantity": { "type": "number", "description": "Stock after change" },
+        "date": { "type": "string", "description": "Date of transaction or batch" },
+        "notes": { "type": "string", "description": "Reason or batch number" },
+        "createdAt": { "type": "string", "description": "Record creation timestamp" },
+        "createdBy": { "type": "string", "description": "User UID or email who performed action" }
+      },
+      "required": ["itemId", "itemName", "changeType", "quantity", "previousQuantity", "newQuantity", "date"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Poultry farm customer sale record",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "description": "Sale date" },
+        "itemId": { "type": "string", "description": "Reference to stock item" },
+        "itemName": { "type": "string", "description": "Name of item sold" },
+        "quantity": { "type": "number", "description": "Units sold" },
+        "unit": { "type": "string", "description": "Unit of measurement" },
+        "ratePerUnit": { "type": "number", "description": "Rate per unit" },
+        "totalAmount": { "type": "number", "description": "Calculated total sale price" },
+        "customerName": { "type": "string", "description": "Name of the customer or wholesale buyer" },
+        "customerPhone": { "type": "string", "description": "Contact phone or WhatsApp" },
+        "paymentStatus": { "type": "string", "enum": ["Paid", "Pending"], "description": "Payment status" },
+        "notes": { "type": "string", "description": "Notes or delivery info" },
+        "createdAt": { "type": "string", "description": "Timestamp of sale registration" },
+        "createdBy": { "type": "string", "description": "UID or email of recording admin" }
+      },
+      "required": ["date", "itemId", "itemName", "quantity", "unit", "ratePerUnit", "totalAmount", "customerName", "paymentStatus"]
+    },
+    "ContactSettings": {
+      "title": "ContactSettings",
+      "description": "Public farm contact details and owner/manager info",
+      "type": "object",
+      "properties": {
+        "ownerName": { "type": "string", "description": "Owner name" },
+        "ownerPhone": { "type": "string", "description": "Owner phone number" },
+        "ownerWhatsApp": { "type": "string", "description": "Owner WhatsApp number" },
+        "managerName": { "type": "string", "description": "Manager name" },
+        "managerPhone": { "type": "string", "description": "Manager phone number" },
+        "managerWhatsApp": { "type": "string", "description": "Manager WhatsApp number" },
+        "farmAddress": { "type": "string", "description": "Physical farm address" },
+        "farmAddressUrdu": { "type": "string", "description": "Physical farm address in Urdu" },
+        "farmEmail": { "type": "string", "description": "Official contact email" },
+        "mapEmbedUrl": { "type": "string", "description": "Embedded Google Map location iframe link" },
+        "updatedAt": { "type": "string", "description": "Last updated timestamp" }
+      },
+      "required": ["ownerName", "ownerPhone", "managerName", "managerPhone", "farmAddress", "farmEmail"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "#/entities/User",
+      "description": "User documents storing profile and role"
+    },
+    "/stock_items/{itemId}": {
+      "schema": "#/entities/StockItem",
+      "description": "Current farm inventory items and quantities"
+    },
+    "/stock_history/{historyId}": {
+      "schema": "#/entities/StockHistory",
+      "description": "Stock addition and decrement audit logs"
+    },
+    "/sales/{saleId}": {
+      "schema": "#/entities/Sale",
+      "description": "Recorded customer sales"
+    },
+    "/settings/contact": {
+      "schema": "#/entities/ContactSettings",
+      "description": "Public contact and farm metadata settings"
+    }
+  }
+}
