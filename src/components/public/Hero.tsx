@@ -62,7 +62,7 @@ export function Hero({ onOpenAuthModal, onNavigateToStock, onNavigateToContact }
               </span>
               <span className="flex items-center gap-1.5 bg-emerald-800/40 px-3 py-1 rounded-lg border border-emerald-700/40">
                 <CheckCircle2 className="w-4 h-4 text-amber-400" />
-                <span>Strict Biosecure Farm</span>
+                <span>Since 2024</span>
               </span>
             </div>
 
