@@ -55,9 +55,11 @@ export const DEFAULT_CONTACT_SETTINGS: ContactSettings = {
   ownerName: 'Haji Noor Muhammad',
   ownerPhone: '+92 300 1234567',
   ownerWhatsApp: '923001234567',
+  ownerPhotoUrl: '',
   managerName: 'Muhammad Rizwan',
-  managerPhone: '+92 321 7654321',
-  managerWhatsApp: '923217654321',
+  managerPhone: '+923016119000',
+  managerWhatsApp: '923016119000',
+  managerPhotoUrl: '',
   farmAddress: 'Chak 45-JB, Gojra / Toba Tek Singh Road, Punjab, Pakistan',
   farmAddressUrdu: 'چک 45-جے بی، گوجرہ روڈ، پنجاب، پاکستان',
   farmEmail: 'info@noormuhammadproteinfarm.com',
@@ -91,6 +93,12 @@ export function subscribeToContactSettings(
         if (!data.mapsDirectUrl) {
           data.mapsDirectUrl = NOOR_MUHAMMAD_MAPS_DIRECT_URL;
         }
+        if (!data.managerPhone || data.managerPhone.includes('7654321')) {
+          data.managerPhone = '+923016119000';
+        }
+        if (!data.managerWhatsApp || data.managerWhatsApp.includes('7654321')) {
+          data.managerWhatsApp = '923016119000';
+        }
         callback(data);
       } else {
         // Provide defaults if not yet initialized
@@ -121,6 +129,12 @@ export async function getContactSettings(): Promise<ContactSettings> {
       }
       if (!data.mapsDirectUrl) {
         data.mapsDirectUrl = NOOR_MUHAMMAD_MAPS_DIRECT_URL;
+      }
+      if (!data.managerPhone || data.managerPhone.includes('7654321')) {
+        data.managerPhone = '+923016119000';
+      }
+      if (!data.managerWhatsApp || data.managerWhatsApp.includes('7654321')) {
+        data.managerWhatsApp = '923016119000';
       }
       return data;
     }

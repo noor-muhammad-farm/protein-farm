@@ -66,8 +66,16 @@ export function ContactSection() {
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-emerald-800/80">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md">
-                    <Shield className="w-6 h-6" />
+                  <div className="w-14 h-14 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md overflow-hidden shrink-0">
+                    {contact.ownerPhotoUrl ? (
+                      <img
+                        src={contact.ownerPhotoUrl}
+                        alt={contact.ownerName}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <Shield className="w-7 h-7 text-emerald-950" />
+                    )}
                   </div>
                   <div>
                     <span className="text-xs uppercase font-bold tracking-wider text-amber-300">
@@ -125,8 +133,16 @@ export function ContactSection() {
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-emerald-800/80">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md">
-                    <User className="w-6 h-6" />
+                  <div className="w-14 h-14 rounded-2xl bg-amber-400 text-slate-950 flex items-center justify-center font-bold shadow-md overflow-hidden shrink-0">
+                    {contact.managerPhotoUrl ? (
+                      <img
+                        src={contact.managerPhotoUrl}
+                        alt={contact.managerName}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <User className="w-7 h-7 text-emerald-950" />
+                    )}
                   </div>
                   <div>
                     <span className="text-xs uppercase font-bold tracking-wider text-amber-300">
@@ -142,7 +158,11 @@ export function ContactSection() {
               <div className="my-6 space-y-3">
                 <div className="flex items-center gap-3 text-emerald-100 text-sm">
                   <Phone className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span className="font-medium tracking-wide">{contact.managerPhone}</span>
+                  <span className="font-medium tracking-wide">
+                    {contact.managerPhone && !contact.managerPhone.includes('7654321')
+                      ? contact.managerPhone
+                      : '+923016119000'}
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-emerald-200/80 text-xs">
                   <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -155,7 +175,7 @@ export function ContactSection() {
             <div className="grid grid-cols-2 gap-3 pt-2">
               <a
                 id="manager-call-link"
-                href={`tel:${contact.managerPhone.replace(/\s+/g, '')}`}
+                href={`tel:${(contact.managerPhone && !contact.managerPhone.includes('7654321') ? contact.managerPhone : '+923016119000').replace(/\s+/g, '')}`}
                 className="flex items-center justify-center gap-2 py-3 px-4 bg-white/10 hover:bg-white/20 text-white text-sm font-semibold rounded-xl border border-white/20 transition-colors"
               >
                 <Phone className="w-4 h-4" />
@@ -163,7 +183,12 @@ export function ContactSection() {
               </a>
               <a
                 id="manager-whatsapp-link"
-                href={formatWhatsAppUrl(contact.managerWhatsApp || contact.managerPhone, contact.managerName)}
+                href={formatWhatsAppUrl(
+                  contact.managerWhatsApp && !contact.managerWhatsApp.includes('7654321')
+                    ? contact.managerWhatsApp
+                    : '923016119000',
+                  contact.managerName
+                )}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-3 px-4 bg-[#25D366] hover:bg-[#20bd5a] text-white text-sm font-bold rounded-xl shadow-md transition-colors"

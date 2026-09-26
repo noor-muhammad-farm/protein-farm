@@ -89,6 +89,22 @@
         "updatedAt": { "type": "string", "description": "Last updated timestamp" }
       },
       "required": ["ownerName", "ownerPhone", "managerName", "managerPhone", "farmAddress", "farmEmail"]
+    },
+    "GalleryPhoto": {
+      "title": "GalleryPhoto",
+      "description": "Showcase photos for Noor Muhammad Protein Farm gallery",
+      "type": "object",
+      "properties": {
+        "imageUrl": { "type": "string", "description": "Image URL or data URL" },
+        "title": { "type": "string", "description": "Title or caption of the photo" },
+        "titleUrdu": { "type": "string", "description": "Urdu title of the photo" },
+        "description": { "type": "string", "description": "Description of the photo" },
+        "category": { "type": "string", "description": "Category or tag of the photo" },
+        "order": { "type": "number", "description": "Display order index" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" },
+        "createdBy": { "type": "string", "description": "Admin UID or email" }
+      },
+      "required": ["imageUrl", "title", "createdAt"]
     }
   },
   "firestore": {
@@ -111,6 +127,10 @@
     "/settings/contact": {
       "schema": "#/entities/ContactSettings",
       "description": "Public contact and farm metadata settings"
+    },
+    "/gallery_photos/{photoId}": {
+      "schema": "#/entities/GalleryPhoto",
+      "description": "Showcase farm photos managed by admin and displayed on home gallery"
     }
   }
 }

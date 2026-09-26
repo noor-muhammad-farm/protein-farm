@@ -20,7 +20,7 @@ function MainApp() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash === 'admin' || hash === 'stock' || hash === 'home' || hash === 'contact') {
+      if (hash === 'admin' || hash === 'stock' || hash === 'home' || hash === 'contact' || hash === 'gallery') {
         setActiveView(hash);
       }
     };
@@ -32,6 +32,20 @@ function MainApp() {
 
   // Update hash when activeView changes
   const handleSelectView = (view: string) => {
+    if (view === 'gallery') {
+      if (activeView !== 'home') {
+        setActiveView('home');
+      }
+      setTimeout(() => {
+        const el = document.getElementById('gallery-section');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+      window.location.hash = 'gallery';
+      return;
+    }
+
     if (view === 'contact') {
       if (activeView !== 'home') {
         setActiveView('home');

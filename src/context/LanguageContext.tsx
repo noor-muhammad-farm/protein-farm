@@ -19,6 +19,7 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Nav
     navHome: 'Home',
+    navGallery: 'Gallery',
     navAbout: 'About Us',
     navStock: 'Current Stock',
     navContact: 'Contact',
@@ -89,6 +90,7 @@ const translations: Record<Language, Record<string, string>> = {
     adminStock: 'Stock Management',
     adminSales: 'Record New Sale',
     adminSalesHistory: 'Sales History',
+    adminGallery: 'Photo Gallery',
     adminContactSettings: 'Contact Settings',
     adminOverview: 'Farm Operations Overview',
     todaySales: "Today's Sales",
@@ -168,6 +170,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Nav
     navHome: 'ہوم',
+    navGallery: 'گیلری',
     navAbout: 'ہمارے بارے میں',
     navStock: 'موجودہ اسٹاک',
     navContact: 'رابطہ کریں',
@@ -238,6 +241,7 @@ const translations: Record<Language, Record<string, string>> = {
     adminStock: 'اسٹاک مینیجمنٹ',
     adminSales: 'نئی سیل درج کریں',
     adminSalesHistory: 'سیلز کی ہسٹری',
+    adminGallery: 'تصاویر گیلری',
     adminContactSettings: 'رابطہ کی ترتیبات',
     adminOverview: 'فارم آپریشنز کا خلاصہ',
     todaySales: 'آج کی سیلز',

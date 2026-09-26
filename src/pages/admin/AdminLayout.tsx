@@ -15,9 +15,10 @@ import {
   Menu,
   X,
   AlertTriangle,
+  Images,
 } from 'lucide-react';
 
-export type AdminSection = 'dashboard' | 'stock' | 'sales' | 'history' | 'contact';
+export type AdminSection = 'dashboard' | 'stock' | 'sales' | 'history' | 'gallery' | 'contact';
 
 interface AdminLayoutProps {
   currentSection: AdminSection;
@@ -79,6 +80,7 @@ export function AdminLayout({
     { id: 'stock', label: t('adminStock'), icon: Boxes },
     { id: 'sales', label: t('adminSales'), icon: ShoppingCart },
     { id: 'history', label: t('adminSalesHistory'), icon: History },
+    { id: 'gallery', label: t('adminGallery'), icon: Images },
     { id: 'contact', label: t('adminContactSettings'), icon: Settings },
   ];
 

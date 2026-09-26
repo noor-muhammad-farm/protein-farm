@@ -64,15 +64,29 @@ export interface ContactSettings {
   ownerName: string;
   ownerPhone: string;
   ownerWhatsApp: string;
+  ownerPhotoUrl?: string;
   managerName: string;
   managerPhone: string;
   managerWhatsApp: string;
+  managerPhotoUrl?: string;
   farmAddress: string;
   farmAddressUrdu?: string;
   farmEmail: string;
   mapEmbedUrl: string;
   mapsDirectUrl?: string;
   updatedAt?: string;
+}
+
+export interface GalleryPhoto {
+  id: string;
+  imageUrl: string;
+  title: string;
+  titleUrdu?: string;
+  description?: string;
+  category?: string;
+  order?: number;
+  createdAt: string;
+  createdBy?: string;
 }
 
 export type Language = 'en' | 'ur';

@@ -1,4 +1,5 @@
 import { Hero } from '../../components/public/Hero';
+import { GallerySection } from '../../components/public/GallerySection';
 import { AboutUs } from '../../components/public/AboutUs';
 import { ContactSection } from '../../components/public/ContactSection';
 
@@ -20,6 +21,7 @@ export function HomePage({
         onNavigateToStock={onNavigateToStock}
         onNavigateToContact={onNavigateToContact}
       />
+      <GallerySection />
       <AboutUs />
       <ContactSection />
     </main>

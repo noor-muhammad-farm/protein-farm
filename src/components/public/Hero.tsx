@@ -2,6 +2,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { FarmLogo } from '../common/FarmLogo';
 import { ArrowRight, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import hensHeroBg from '../../assets/images/hens_hero_bg_1790425293991.jpg';
 
 interface HeroProps {
   onOpenAuthModal: (mode: 'signin' | 'signup') => void;
@@ -14,7 +15,20 @@ export function Hero({ onOpenAuthModal, onNavigateToStock, onNavigateToContact }
   const { t, isRtl } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-900 via-emerald-850 to-emerald-950 text-white pt-16 pb-24 lg:pt-24 lg:pb-32">
+    <section className="relative overflow-hidden bg-emerald-950 text-white pt-16 pb-24 lg:pt-24 lg:pb-32">
+      {/* Real Hens Background Photo - Clearly Visible */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none">
+        <img
+          src={hensHeroBg}
+          alt="Layer Hens in Farm Shed Background"
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-right lg:object-center"
+        />
+        {/* Dynamic gradient: darker on text side, crystal clear on hens side */}
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-950/95 via-emerald-950/75 to-emerald-950/25"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/90 via-transparent to-emerald-950/40"></div>
+      </div>
+
       {/* Subtle organic pattern overlay */}
       <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fde047_1px,transparent_1px)] [background-size:24px_24px]"></div>
 

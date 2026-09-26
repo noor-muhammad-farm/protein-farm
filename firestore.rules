@@ -55,6 +55,12 @@ service cloud.firestore {
       allow write: if isAdmin();
     }
 
+    // Gallery photos - publicly readable, writable by admin
+    match /gallery_photos/{photoId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
     // Diagnostic/connection test probe
     match /test/connection {
       allow read: if true;

@@ -14,6 +14,7 @@ import {
   PhoneCall,
   Home,
   Layers,
+  Images,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -68,6 +69,19 @@ export function Navbar({ activeView, setActiveView, onOpenAuthModal }: NavbarPro
             >
               <Home className="w-4 h-4" />
               <span>{t('navHome')}</span>
+            </button>
+
+            <button
+              id="nav-link-gallery"
+              onClick={() => handleNavClick('gallery')}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-semibold transition-colors ${
+                activeView === 'gallery'
+                  ? 'bg-emerald-50 text-emerald-800'
+                  : 'text-slate-600 hover:text-emerald-800 hover:bg-slate-50'
+              }`}
+            >
+              <Images className="w-4 h-4" />
+              <span>{t('navGallery')}</span>
             </button>
 
             {/* Current Stock - visible only after login as required */}
@@ -220,6 +234,17 @@ export function Navbar({ activeView, setActiveView, onOpenAuthModal }: NavbarPro
           >
             <Home className="w-5 h-5" />
             <span>{t('navHome')}</span>
+          </button>
+
+          <button
+            id="mobile-nav-gallery"
+            onClick={() => handleNavClick('gallery')}
+            className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-base font-semibold ${
+              activeView === 'gallery' ? 'bg-emerald-50 text-emerald-800' : 'text-slate-700'
+            }`}
+          >
+            <Images className="w-5 h-5 text-emerald-700" />
+            <span>{t('navGallery')}</span>
           </button>
 
           {currentUser && (

@@ -6,6 +6,7 @@ import { AdminStock } from './AdminStock';
 import { AdminSales } from './AdminSales';
 import { AdminSalesHistory } from './AdminSalesHistory';
 import { AdminContactSettings } from './AdminContactSettings';
+import { AdminGallery } from './AdminGallery';
 import {
   subscribeToStockItems,
   subscribeToStockHistory,
@@ -81,6 +82,8 @@ export function AdminPage({ onExitAdmin }: AdminPageProps) {
       {currentSection === 'history' && (
         <AdminSalesHistory sales={sales} stockItems={stockItems} />
       )}
+
+      {currentSection === 'gallery' && <AdminGallery />}
 
       {currentSection === 'contact' && <AdminContactSettings />}
     </AdminLayout>
