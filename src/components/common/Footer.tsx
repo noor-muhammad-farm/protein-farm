@@ -42,6 +42,22 @@ export function Footer() {
             <span>Pure Protein for a Healthier Community</span>
           </p>
         </div>
+
+        {/* Developer Attribution */}
+        <div className="mt-6 pt-5 border-t border-emerald-900/70 text-center text-xs text-emerald-300/80">
+          <p className="tracking-wide">
+            Developed by{' '}
+            <a
+              href="https://nasir-iqbal.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-amber-300 hover:text-amber-200 underline decoration-amber-400/50 hover:decoration-amber-300 underline-offset-2 transition-colors cursor-pointer"
+            >
+              Nasir Iqbal
+            </a>{' '}
+            & <span className="font-semibold text-amber-300 hover:text-amber-200 transition-colors">Haseeb Ijaz</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
